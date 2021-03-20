@@ -70,7 +70,9 @@ public class BaddieSpawnerScript : MonoBehaviour
         killsUI.GetComponent<TextMesh>().text = "Kills: " + kills;
     }
 
-
+    /// <summary>
+    /// Spawns a baddie
+    /// </summary>
     void SpawnBaddie()
     {
         // hmm, some well done spaghetti once more

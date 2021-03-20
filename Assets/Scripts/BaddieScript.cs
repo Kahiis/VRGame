@@ -31,16 +31,15 @@ public class BaddieScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Move the baddie in a smooth zombielike fashion
         Vector3 direction = (target.transform.position - transform.position).normalized;
         rb.MovePosition(transform.position + direction * Time.deltaTime * movespeed);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Handling baddie death, as in the baddie was pushed out of bounds
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PlayArea"))
@@ -51,6 +50,10 @@ public class BaddieScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// handling the collision between the bullet and the baddie
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Bullet"))
@@ -60,6 +63,10 @@ public class BaddieScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// handling the collision between the player and the baddie
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

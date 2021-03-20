@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Niko Kahilainen
+/// A silly way to restart the game
+/// </summary>
 public class RestartScript : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)

@@ -6,6 +6,7 @@ using UnityEngine.XR;
 
 /// <summary>
 /// Author: Niko Kahilainen
+/// A basic player controller. Assigns player's hands properly for the game
 /// Based on a tutorial series by Valem
 /// https://www.youtube.com/watch?v=gGYtahQjmWQ
 /// </summary>
@@ -38,6 +39,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // A silly way of arranging the controllers properly. Only tested with the Oculus Rift S
         Debug.Log("Starting playerscript");
         List<InputDevice> devices = new List<InputDevice>();
         InputDeviceCharacteristics controller = InputDeviceCharacteristics.Controller;
@@ -49,22 +51,6 @@ public class PlayerScript : MonoBehaviour
         List<InputDevice> temp1 = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, temp1);
         right = temp1[0];
-        /*
-        foreach (InputDevice d in devices)
-        {
-            var juttu = d.characteristics;
-            if (d.characteristics == InputDeviceCharacteristics.Left)
-            {
-                left = d;
-            } else
-            {
-                right = d;
-            }
-        }
-
-        if (devices.Count == 0)
-            Debug.LogError("Couldn't find controllers!");
-        */
     }
 
     // Update is called once per frame
@@ -96,6 +82,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fires a bullet
+    /// </summary>
+    /// <param name="hand">the transform of the hand we want to shoot the bullet from</param>
     public void Fire(Transform hand)
     {
         Vector3 spawnPos = hand.transform.position;// + (Vector3.forward * 0.5f);// + (Vector3.forward * 2);
@@ -109,6 +99,9 @@ public class PlayerScript : MonoBehaviour
         Destroy(bullet, bulletLifetime);
     }
 
+    /// <summary>
+    /// Handling getting hit by a baddie
+    /// </summary>
     public void HitByEnemy()
     {
         if (alive)
