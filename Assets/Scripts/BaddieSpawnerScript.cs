@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// Author: Niko Kahilainen
@@ -67,7 +68,7 @@ public class BaddieSpawnerScript : MonoBehaviour
             SpawnBaddie();
         }
         SpawnBaddie();
-        killsUI.GetComponent<TextMesh>().text = "Kills: " + kills;
+        killsUI.GetComponent<TextMeshProUGUI>().text = "Kills: " + kills;
     }
 
     /// <summary>
@@ -91,7 +92,7 @@ public class BaddieSpawnerScript : MonoBehaviour
         Vector3 randomPosition = spawns[Random.Range(0, spawns.Count)].transform.position;
         hitter.transform.position = randomPosition;
         playerScript.HitByEnemy();
-        HealthUI.GetComponent<TextMesh>().text = "Health: " + playerScript.hitPoints;
+        HealthUI.GetComponent<TextMeshProUGUI>().text = "Health: " + playerScript.hitPoints;
         if (!playerScript.alive)
         {
             foreach (Transform child in this.transform)
